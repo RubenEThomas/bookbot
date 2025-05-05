@@ -1,20 +1,24 @@
-
-
-def number_of_words():
-    word_count = 0
-    with open("/home/ruben_thomas/workspace/github.com/bootdotdev/curriculum/bookbot/books/frankenstein.txt") as f:
+import sys
+def get_book_text(sys):
+    with open(sys.argv[1]) as f:
         file_contents = f.read()
+    return 
+
+def number_of_words(sys):
+    word_count = 0
     words = []
-    words = file_contents.split()
+    with open(sys.argv[1]) as f:
+        file_contents = f.read()
+    words = file_contents
     for word in words:
         word_count += 1
     return word_count
 
-word_count = number_of_words()
+word_count = number_of_words(sys)
 
-def count_of_characters():
+def count_of_characters(sys):
     characters = {}
-    with open("/home/ruben_thomas/workspace/github.com/bootdotdev/curriculum/bookbot/books/frankenstein.txt") as f:
+    with open(sys.argv[1]) as f:
         file_contents = f.read()
         words = []
         words = file_contents.split()
@@ -28,7 +32,7 @@ def count_of_characters():
                 characters[letter] = 1
     return characters
 
-characters = count_of_characters()
+characters = count_of_characters(sys)
 
 def sort_on(dict):
     return dict["num"]
@@ -42,11 +46,11 @@ def new_dictionary(characters):
 
 sorted_list_of_dictionaries = new_dictionary(characters)
 
-def end(sorted_list_of_dictionaries,word_count): 
+def end(sorted_list_of_dictionaries,word_count,sys): 
     sorted_list_of_dictionaries.sort(reverse = True, key = sort_on)
 
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {sys.argv[1]}...")
     print("----------- Word Count ----------")
     print(f"Found {word_count} total words")
     print("--------- Character Count -------")
