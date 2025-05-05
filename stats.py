@@ -30,24 +30,45 @@ def count_of_characters():
 
 characters = count_of_characters()
 
-def sort(dict):
-    return 
+def sort_on(dict):
+    return dict["num"]
 
-def end(characters,word_count): 
-    list_of_characters = []
+def new_dictionary(characters):
+    sorted_list_of_dictionaries = []
     for character in characters:
-        if character.isalpha() == True:
-            list_of_characters.append(character)
+        sorted_dict_of_characters = {"char": character, "num" : characters[character]}
+        sorted_list_of_dictionaries.append(sorted_dict_of_characters)
+    return sorted_list_of_dictionaries
+
+sorted_list_of_dictionaries = new_dictionary(characters)
+
+def end(sorted_list_of_dictionaries,word_count): 
+    sorted_list_of_dictionaries.sort(reverse = True, key = sort_on)
+
     print("============ BOOKBOT ============")
     print("Analyzing book found at books/frankenstein.txt...")
     print("----------- Word Count ----------")
     print(f"Found {word_count} total words")
     print("--------- Character Count -------")
-    
-    list_of_characters.sort(key=None, reverse=False)
-    for list_of_character in list_of_characters:
-        print(f"{list_of_character} : {characters[list_of_character]}")
+
+    for sorted_list_of_dictionarie in sorted_list_of_dictionaries:
+        if sorted_list_of_dictionarie["char"].isalpha():
+            print(f"{sorted_list_of_dictionarie["char"]}: {sorted_list_of_dictionarie["num"]}")
+
     print("============= END ===============") 
-    print(characters)
     return
-end(characters,word_count)
+
+
+
+def get_book_text(path_to_file):
+    with open(path_to_file) as f:
+        file_contents = f.read()
+        return print(file_contents)
+
+
+
+
+
+
+
+
